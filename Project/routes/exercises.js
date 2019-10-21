@@ -70,7 +70,12 @@ router.delete('/:id', (req, res) =>{
 // 5. retrieve a specific exercise log and update it 
 // with information sent by client on req body
 // POST: /update/:id
-
+router.post("/update/:id", (req, res) => {
+    Exercise.findOneAndUpdate({ _id: req.params.id }, req.body, (err, data) => {
+      if (err) return res.status(404).json(err);
+      return res.json(data);
+    })
+})
 // ========================================
 
 
